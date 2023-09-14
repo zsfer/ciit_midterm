@@ -5,12 +5,22 @@ public class Enemy : MonoBehaviour
     private Transform m_target;
     public float MoveSpeed;
 
+    [SerializeField] private SkinnedMeshRenderer m_renderer;
+
+    public Material Material
+    {
+        get
+        {
+            return m_renderer.material;
+        }
+    }
+
     void Start()
     {
         m_target = GameObject.FindGameObjectWithTag("Player").transform;
         transform.LookAt(m_target);
 
-        GetComponent<Renderer>().material.color = GameManager.Instance.GetRandomColor();
+        m_renderer.material.color = GameManager.Instance.GetRandomColor();
     }
 
     void FixedUpdate()

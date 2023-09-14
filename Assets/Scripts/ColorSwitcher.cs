@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class ColorSwitcher : MonoBehaviour
 {
-    private MeshRenderer m_renderer;
+    [SerializeField] Renderer m_renderer;
 
     public int CurrentColorIndex { get; private set; }
     private void Start()
     {
-        m_renderer = GetComponent<MeshRenderer>();
         m_renderer.material.color = GameManager.Instance.Colors[CurrentColorIndex];
     }
 

@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (IsSameColor(other.GetComponent<Renderer>().material))
+            if (IsSameColor(other.GetComponent<Enemy>().Material))
             {
                 GameManager.Instance.Score++;
                 Destroy(other.gameObject);
