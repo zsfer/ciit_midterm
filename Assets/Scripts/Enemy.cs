@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.Instance.SetGameOver(true);
+
+            Destroy(other.gameObject);
         }
     }
 }

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,11 +12,20 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
     public int Score = 0;
 
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI m_scoreUI;
+    [SerializeField] private GameObject m_gameOverScreen;
+
     public static GameManager Instance { get; private set; }
 
     void Awake()
     {
         Instance = this;
+    }
+
+    void Update()
+    {
+        m_scoreUI.text = Score.ToString();
     }
 
     public Color GetRandomColor()
@@ -29,6 +41,15 @@ public class GameManager : MonoBehaviour
 
     public void SetGameOver(bool state)
     {
-        isGameOver = true;
+        isGameOver = state;
+        m_gameOverScreen.SetActive(state);
+
+        var time = GetComponent<GameTimer>().FormattedTime;
+        m_gameOverScreen.GetComponent<GameOverScreen>().SetScore(Score, time);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
