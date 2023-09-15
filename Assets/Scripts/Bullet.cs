@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
     private Rigidbody m_rb;
     void Start()
     {
@@ -20,6 +19,7 @@ public class Bullet : MonoBehaviour
             if (IsSameColor(other.GetComponent<Enemy>().Material))
             {
                 GameManager.Instance.Score++;
+                other.GetComponent<Enemy>().Explode();
                 Destroy(other.gameObject);
             }
 
@@ -33,4 +33,6 @@ public class Bullet : MonoBehaviour
 
         return mat.color.Equals(otherMaterial.color);
     }
+
+
 }

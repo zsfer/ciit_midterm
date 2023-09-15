@@ -18,7 +18,5 @@ This is a color matcher shooter game. You are a toy soldier that can change colo
 
 _i added these_
 
--  [ ] Better graphics
+-  [x] Better graphics
 -  [ ] Sound effects
--  [ ] High score
--  [ ] Main menu

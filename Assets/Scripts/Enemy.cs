@@ -5,7 +5,9 @@ public class Enemy : MonoBehaviour
     private Transform m_target;
     public float MoveSpeed;
 
-    [SerializeField] private SkinnedMeshRenderer m_renderer;
+    [SerializeField] private MeshRenderer m_renderer;
+
+    [SerializeField] private GameObject m_explosionVfx;
 
     public Material Material
     {
@@ -32,9 +34,15 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.SetGameOver(true);
-
+            other.GetComponent<Player>().KillPlayer();
             Destroy(other.gameObject);
         }
     }
+
+    public void Explode()
+    {
+        var vfx = Instantiate(m_explosionVfx, transform.position, Quaternion.identity);
+        Destroy(vfx, 7);
+    }
+
 }

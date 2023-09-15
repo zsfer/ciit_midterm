@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public float DetectionRadius = 10f;
     [SerializeField] private float m_rotationSpeed = 20;
 
+    [SerializeField] private AudioClip m_deathSfx;
+
     private readonly Collider[] m_overlapResults = new Collider[20];
 
     private GameObject m_target;
@@ -57,6 +59,13 @@ public class Player : MonoBehaviour
         return closest;
 
     }
+
+    public void KillPlayer()
+    {
+        GameManager.Instance.SetGameOver(true);
+        GetComponent<AudioSource>().PlayOneShot(m_deathSfx, 0.5f);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
