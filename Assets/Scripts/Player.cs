@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask m_detectionMask;
     public float DetectionRadius = 10f;
+    [SerializeField] private float m_rotationSpeed = 20;
 
     private readonly Collider[] m_overlapResults = new Collider[20];
 
@@ -18,7 +19,8 @@ public class Player : MonoBehaviour
 
         if (m_target != null)
         {
-            transform.LookAt(m_target.transform);
+            var dir = m_target.transform.position - transform.position;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), m_rotationSpeed * Time.deltaTime);
         }
 
     }
