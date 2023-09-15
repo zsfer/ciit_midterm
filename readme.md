@@ -19,4 +19,4 @@ This is a color matcher shooter game. You are a toy soldier that can change colo
 _i added these_
 
 -  [x] Better graphics
--  [ ] Sound effects
+-  [x] Sound effects
